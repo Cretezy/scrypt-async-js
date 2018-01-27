@@ -1,8 +1,11 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>scrypt-async-modern demo</title>
     <style>
         html,
@@ -30,8 +33,8 @@
 </head>
 
 <body>
-<h1><a href="https://github.com/dchest/scrypt-async-js">scrypt-async-js</a> demo</h1>
-<form onsubmit="calculate(); return false">
+<h1><a href="https://github.com/Cretezy/scrypt-async-modern">scrypt-async-modern</a> demo</h1>
+<form>
     <p>
         <label for="password">Password:</label>
         <input id="password" name="password" type="text" value="password" size="32">
@@ -67,17 +70,21 @@
             <option value="binary">binary</option>
         </select>
     </p>
-    <input type="submit" name="btn" value="Calculate" />
+    <div id="submit">
+        <input type="submit" name="btn" value="Calculate" />
+    </div>
 </form>
+
 <div id="out"></div>
 
-<script src="dist/browser/index.js"></script>
-<script>
-	const f = document.forms[0];
+<script type="module">
+	import scrypt from "./src/index.js"
+
+	const form = document.forms[0];
 
 	function updateN() {
 		const fN = document.querySelector('#N');
-		const logN = f.logN.value;
+		const logN = form.logN.value;
 		fN.innerHTML = 'N = ' + Math.pow(2, logN);
 	}
 
@@ -87,21 +94,21 @@
 
 	function calculate() {
 
-		const btn = f.btn;
+		const btn = form.btn;
 		const out = document.querySelector('#out');
 
-		const password = f.password.value;
-		const salt = f.salt.value;
-		const interruptStep = f.interruptStep.value;
-		const logN = f.logN.value;
-		const r = f.r.value;
-		const p = f.p.value;
-		const encoding = f.encoding.value;
+		const password = form.password.value;
+		const salt = form.salt.value;
+		const interruptStep = form.interruptStep.value;
+		const logN = form.logN.value;
+		const r = form.r.value;
+		const p = form.p.value;
+		const encoding = form.encoding.value;
 
 		btn.disabled = true;
 		btn.value = 'Wait...';
 
-		window.setTimeout(function () {
+		window.setTimeout(() => {
 			try {
 				const t1 = getTime();
 				scrypt(password, salt, {
@@ -127,6 +134,14 @@
 	}
 
 	updateN();
+
+	form.onsubmit = event => {
+		event.preventDefault();
+		calculate();
+	};
+</script>
+<script defer nomodule>
+	document.getElementById("submit").innerHTML = "<h3>Sorry, this demo is build for browsers with ES6 module support. <code>scrypt-async-modern</code> supports older browsers, however this demo doesn't to keep things simple. Please try again in a modern browser.</h3>"
 </script>
 </body>
 
