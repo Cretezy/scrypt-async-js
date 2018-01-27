@@ -1,7 +1,7 @@
-.vscode
 .travis.yml
-Gruntfile.js
-bower.json
-coverage
-demo.html
-test
+rollup.config.js
+index.html
+src/**/*.test.js
+yarn.lock
+.idea
+.babelrc

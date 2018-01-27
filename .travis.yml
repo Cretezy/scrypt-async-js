@@ -1,17 +1,5 @@
-sudo: false
 language: node_js
 node_js:
   - "stable"
-env:
-  global:
-    - secure: "Q/2G3euxBPi7m89kk4qDrHsaKEqbwtbPQvxMBBLb1o3UrvFB4Py6BworZBZp3qOrTZKxtkYHN+UhngXtwQQKOs3IfFSrxILNgB3ryO0YxkfvvRz5C9UBEJYgyQl4Jz83zD9Wl83WFgwWFQFwUTXTMu0E8nZ/k1qFqWIMw6dJioY="
-    - secure: "bEIJZp5mgvYs5Ko6TipP307n0B2/UDS4voXTnsYYs7J5ck6up8KIGFyKBz2BQo/v4N4RN4hxpP3XAeXY+n9w3EyALR9ZE3XLhw+3cor1DefEGlUxGBzkAQlEtIokWJ0afmaTlLTggJ6bTBuv6W/h5/yGPyfNlyVpowhBslT0JR4="
-cache:
-  directories:
-    - node_modules
-before_script:
-  - npm install -g grunt-cli
-script:
-  - grunt build
-  - grunt test_and_coveralls
-  - travis_wait grunt saucelabs || true
+  - "node"
+cache: yarn

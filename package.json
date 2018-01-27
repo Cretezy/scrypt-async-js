@@ -1,27 +1,26 @@
 {
-  "name": "scrypt-async",
-  "version": "2.0.1",
-  "description": "Fast \"async\" scrypt implementation in JavaScript.",
-  "main": "scrypt-async.js",
+  "name": "scrypt-async-modern",
+  "version": "3.0.0",
+  "description": "Fast \"async\" scrypt implementation in modern JavaScript.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "jsnext:main": "dist/es/index.js",
   "scripts": {
-    "test": "grunt test",
-    "build": "grunt build"
+    "test": "jest",
+    "build": "rollup -c",
+    "prettier": "prettier --write src/**/*.js"
   },
   "devDependencies": {
-    "coveralls": "2.11.12",
-    "grunt": "1.0.1",
-    "grunt-browserify": "5.0.0",
-    "grunt-contrib-connect": "1.0.2",
-    "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-uglify": "2.0.0",
-    "grunt-mocha-istanbul": "5.0.2",
-    "grunt-saucelabs": "9.0.0",
-    "istanbul": "0.4.5",
-    "mocha": "3.0.2"
+    "jest": "^22.1.4",
+    "@babel/core": "^7.0.0-beta.38",
+    "babel-jest": "^22.1.0",
+    "babel-preset-env": "^1.6.1",
+    "prettier": "^1.10.2",
+    "rollup": "^0.55.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dchest/scrypt-async-js.git"
+    "url": "https://github.com/Cretezy/scrypt-async-modern.git"
   },
   "keywords": [
     "crypto",
@@ -29,13 +28,10 @@
     "scrypt",
     "password"
   ],
-  "author": "Dmitry Chestnykh",
-  "license": "BSD",
+  "author": "Charles Crete <charles@cretezy.com",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dchest/scrypt-async-js/issues"
+    "url": "https://github.com/Cretezy/scrypt-async-modern/issues"
   },
-  "homepage": "https://github.com/dchest/scrypt-async-js",
-  "dependencies": {
-    "promise": "^8.0.1"
-  }
+  "homepage": "https://github.com/Cretezy/scrypt-async-modern"
 }
