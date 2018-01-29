@@ -1,3 +1,5 @@
+import babel from "rollup-plugin-babel";
+
 export default {
   input: "src/index.js",
   output: [
@@ -14,5 +16,18 @@ export default {
       format: "iife",
       name: "scrypt"
     }
+  ],
+  plugins: [
+    babel({
+      presets: [
+        [
+          "@babel/preset-env",
+          {
+            modules: false
+          }
+        ]
+      ],
+      babelrc: false
+    })
   ]
 };

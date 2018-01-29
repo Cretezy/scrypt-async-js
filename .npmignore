@@ -5,3 +5,4 @@ src/**/*.test.js
 yarn.lock
 .idea
 .babelrc
+scrypt-async-modern-*.tgz
