@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>scrypt-async-modern demo</title>
     <style>
-        html,
         body {
             font-family: sans-serif;
+            margin: 10px;
         }
 
         #output {
@@ -23,11 +23,51 @@
         #output small {
             padding: 5px;
             background-color: #eee;
+            overflow-wrap: break-word;
         }
 
         #N {
-            margin-left: 10px;
             color: #aaa;
+        }
+
+        input {
+            height: 20px;
+            padding: 5px;
+            margin: 0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        label {
+            min-width: 125px;
+            max-width: 175px;
+            width: 100%;
+            display: inline-block;
+        }
+
+        button {
+            background-color: palevioletred;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 500px) {
+            label {
+                max-width: calc(100% - 20px);
+                width: 100%;
+            }
+
+            input {
+                max-width: calc(100% - 20px);
+                width: 100%;
+
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
@@ -37,20 +77,19 @@
 <form>
     <p>
         <label for="password">Password:</label>
-        <input id="password" name="password" type="text" value="password" size="32">
+        <input id="password" name="password" type="text" value="password">
     </p>
     <p>
         <label for="salt">Salt:</label>
-        <input id="salt" name="salt" type="text" value="salt" size="32">
+        <input id="salt" name="salt" type="text" value="salt">
     </p>
     <p>
         <label for="interruptStep">interruptStep:</label>
-        <input id="interruptStep" name="interruptStep" type="text" value="0" size="8">
+        <input id="interruptStep" name="interruptStep" type="number" value="0" min="0">
     </p>
     <p>
-        <label for="logN">logN:</label>
+        <label for="logN">logN: <span id="N"></span></label>
         <input id="logN" name="logN" type="number" value="14" max="31" min="1">
-        <span id="N"></span>
     </p>
     <p>
         <label for="r">r:</label>
@@ -73,7 +112,7 @@
         </select>
     </p>
     <div id="submit">
-        <input type="submit" name="btn" value="Calculate" />
+        <button type="submit" name="btn">Calculate</button>
     </div>
 </form>
 
@@ -109,7 +148,7 @@
 		const dkLen = form.dkLen.value;
 
 		btn.disabled = true;
-		btn.value = 'Wait...';
+		btn.innerHTML = 'Wait...';
 
 		setTimeout(async () => {
 			try {
@@ -131,7 +170,7 @@
 				output.innerHTML = '<span style="color:red">Error: ' + error.message + '</span>';
 			} finally {
 				btn.disabled = false;
-				btn.value = 'Calculate';
+				btn.innerHTML = 'Calculate';
 			}
 		});
 	}
@@ -142,7 +181,7 @@
 		event.preventDefault();
 		calculate();
 	};
-	
+
 	form.logN.onchange = updateN;
 	form.logN.onkeypress = updateN;
 	form.logN.onkeydown = updateN;
