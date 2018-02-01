@@ -13,14 +13,14 @@
             font-family: sans-serif;
         }
 
-        #out {
+        #output {
             margin-top: 10px;
             padding: 10px 5px;
             color: #444;
             line-height: 1.5;
         }
 
-        #out small {
+        #output small {
             padding: 5px;
             background-color: #eee;
         }
@@ -49,18 +49,20 @@
     </p>
     <p>
         <label for="logN">logN:</label>
-        <input id="logN" name="logN" type="text" value="11" size="4"
-               onkeypress="updateN()" onkeyup="updateN()"
-               onblur="updateN()" onchange="updateN()">
-        <span id="N" />
+        <input id="logN" name="logN" type="number" value="14" max="31" min="1">
+        <span id="N"></span>
     </p>
     <p>
         <label for="r">r:</label>
-        <input id="r" name="r" type="text" value="8" size="4">
+        <input id="r" name="r" type="number" value="8" min="1">
     </p>
     <p>
         <label for="p">p:</label>
-        <input id="p" name="p" type="text" value="1" size="4">
+        <input id="p" name="p" type="number" value="1" min="1">
+    </p>
+    <p>
+        <label for="dkLen">dkLen:</label>
+        <input id="dkLen" name="dkLen" type="number" value="32" min="1">
     </p>
     <p>
         <label for="encoding">Encoding:</label>
@@ -75,17 +77,18 @@
     </div>
 </form>
 
-<div id="out"></div>
+<div id="output"></div>
 
 <script type="module">
 	import scrypt from "./src/index.js"
 
+	const displayN = document.getElementById('N');
+	const output = document.getElementById('output');
 	const form = document.forms[0];
 
 	function updateN() {
-		const fN = document.querySelector('#N');
 		const logN = form.logN.value;
-		fN.innerHTML = 'N = ' + Math.pow(2, logN);
+		displayN.innerHTML = 'N = ' + Math.pow(2, logN);
 	}
 
 	const getTime = typeof performance !== "undefined"
@@ -93,40 +96,40 @@
 		: Date.now.bind(Date);
 
 	function calculate() {
-
 		const btn = form.btn;
-		const out = document.querySelector('#out');
 
 		const password = form.password.value;
 		const salt = form.salt.value;
+
 		const interruptStep = form.interruptStep.value;
 		const logN = form.logN.value;
 		const r = form.r.value;
 		const p = form.p.value;
 		const encoding = form.encoding.value;
+		const dkLen = form.dkLen.value;
 
 		btn.disabled = true;
 		btn.value = 'Wait...';
 
-		window.setTimeout(() => {
+		setTimeout(async () => {
 			try {
 				const t1 = getTime();
-				scrypt(password, salt, {
-					logN: logN,
-					r: r,
-					p: p,
-					dkLen: 32,
-					interruptStep: interruptStep,
-					encoding: encoding
-				}).then(
-					(res) => {
-						const t2 = getTime() - t1;
-						out.innerHTML = `Time: <b>${t2}ms</b><br>Result: <small>${res}</small>`;
-						btn.disabled = false;
-						btn.value = 'Calculate';
-					});
-			} catch (ex) {
-				out.innerHTML = '<span style="color:red">error: ' + ex.message + '</span>';
+
+				const result = await scrypt(password, salt, {
+					logN,
+					r,
+					p,
+					dkLen,
+					interruptStep,
+					encoding
+				});
+
+				const t2 = getTime() - t1;
+
+				output.innerHTML = `Time: <b>${t2}ms</b><br>Result: <small>${result}</small>`;
+			} catch (error) {
+				output.innerHTML = '<span style="color:red">Error: ' + error.message + '</span>';
+			} finally {
 				btn.disabled = false;
 				btn.value = 'Calculate';
 			}
@@ -139,6 +142,11 @@
 		event.preventDefault();
 		calculate();
 	};
+	
+	form.logN.onchange = updateN;
+	form.logN.onkeypress = updateN;
+	form.logN.onkeydown = updateN;
+	form.logN.onkeyup = updateN;
 </script>
 <script defer nomodule>
 	document.getElementById("submit").innerHTML = "<h3>Sorry, this demo is build for browsers with ES6 module support. <code>scrypt-async-modern</code> supports older browsers, however this demo doesn't to keep things simple. Please try again in a modern browser.</h3>"

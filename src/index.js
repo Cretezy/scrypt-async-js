@@ -62,7 +62,7 @@ export default function scrypt(password,
 			return reject(new Error("scrypt: invalid p"));
 		}
 
-		if (r <= 0) {
+		if (r < 1) {
 			return reject(new Error("scrypt: invalid r"));
 		}
 

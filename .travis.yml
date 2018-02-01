@@ -6,7 +6,7 @@ cache: yarn
 jobs:
   include:
   - stage: deploy
-    before_deploy:
+    script:
     - yarn build
     - yarn pack
     deploy:
