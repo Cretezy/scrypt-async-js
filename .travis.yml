@@ -5,6 +5,7 @@ node_js:
 cache: yarn
 
 stages:
+  - test
   - name: deploy
     if: tag IS present
 
