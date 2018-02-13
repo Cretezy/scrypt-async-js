@@ -4,6 +4,10 @@ node_js:
 - node
 cache: yarn
 
+stages:
+  - name: deploy
+    if: tag IS present
+
 jobs:
   include:
   - stage: deploy
@@ -18,7 +22,6 @@ jobs:
       skip_cleanup: true
       on:
         tags: true
-        repo: Cretezy/scrypt-async-modern
   - stage: deploy
     env: DEPLOY=npm
     script: skip
@@ -30,4 +33,3 @@ jobs:
       skip_cleanup: true
       on:
         tags: true
-        repo: Cretezy/scrypt-async-modern
