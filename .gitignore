@@ -1,3 +1,11 @@
-node_modules
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage
 dist
-scrypt-async-modern-*.tgz
+node_modules
+*.tgz
+.yarn-integrity
+.env

@@ -35,11 +35,20 @@
  * the callback is called immediately after the calculation, avoiding setImmediate.
  *
  */
-export default function scrypt(password,
-                               salt,
-                               { N = 16384, logN, r = 8, p = 1, dkLen = 32, interruptStep = 0, encoding } = {}) {
+export default function scrypt(
+	password,
+	salt,
+	{
+		N = 16384,
+		logN,
+		r = 8,
+		p = 1,
+		dkLen = 32,
+		interruptStep = 0,
+		encoding
+	} = {}
+) {
 	return new Promise((resolve, reject) => {
-
 		if (!logN && !N) {
 			return reject(new Error("scrypt: missing N or logN parameter"));
 		}
@@ -71,7 +80,10 @@ export default function scrypt(password,
 }
 
 // Internal scrypt function
-function run({password, salt, N, r, p, dkLen, interruptStep, encoding }, callback) {
+function run(
+	{ password, salt, N, r, p, dkLen, interruptStep, encoding },
+	callback
+) {
 	function SHA256(m) {
 		const K = [
 			0x428a2f98,
@@ -636,7 +648,7 @@ function run({password, salt, N, r, p, dkLen, interruptStep, encoding }, callbac
 
 	function interruptedFor(start, end, step, fn, donefn) {
 		(function performStep() {
-			nextTick(function () {
+			nextTick(function() {
 				fn(start, start + step < end ? start + step : end);
 				start += step;
 				if (start < end) performStep();
