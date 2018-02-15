@@ -1,6 +1,6 @@
 {
 	"name": "scrypt-async-modern",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"description": "Fast \"async\" scrypt implementation in modern JavaScript.",
 	"main": "dist/index.js",
 	"scripts": {
@@ -14,7 +14,7 @@
 			"noderize-scripts clean && noderize-scripts build --env production"
 	},
 	"devDependencies": {
-		"noderize-scripts": "^0.3.2"
+		"noderize-scripts": "^0.3.6"
 	},
 	"repository": {
 		"type": "git",

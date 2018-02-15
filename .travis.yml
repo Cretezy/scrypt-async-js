@@ -5,9 +5,9 @@ node_js:
 cache: yarn
 
 stages:
-  - test
-  - name: deploy
-    if: tag IS present
+- test
+- name: deploy
+  if: tag IS present AND repo = Cretezy/scrypt-async-modern
 
 jobs:
   include:
