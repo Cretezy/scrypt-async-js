@@ -1,6 +1,4 @@
-# scrypt-async-modern
-
-[![Build Status](https://travis-ci.org/Cretezy/scrypt-async-modern.svg?branch=master)](https://travis-ci.org/Cretezy/scrypt-async-modern)
+# scrypt-async-modern [![Build Status](https://travis-ci.org/Cretezy/scrypt-async-modern.svg?branch=master)](https://travis-ci.org/Cretezy/scrypt-async-modern) [![npm version](http://img.shields.io/npm/v/scrypt-async-modern.svg?style=flat)](https://www.npmjs.org/package/scrypt-async-modern)
 
 Fast "async" scrypt implementation in modern JavaScript.
 
