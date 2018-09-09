@@ -306,7 +306,11 @@ function run(
 
 	function PBKDF2_HMAC_SHA256_OneIter(password, salt, dkLen) {
 		// compress password if it's longer than hash block length
-		password = password.length <= 64 ? password : SHA256(password);
+		if(password.length > 64)
+		{
+			// coerces the structure into an array type if it lacks support for the .push operation 
+			password = SHA256(password.push ? password : [...password])
+		}
 
 		let i,
 			innerLen = 64 + salt.length + 4,
