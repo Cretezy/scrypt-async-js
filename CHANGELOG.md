@@ -1,3 +1,7 @@
+## 3.0.11 - 2019-01-05
+
+- Fix overloading
+
 ## 3.0.10 - 2019-01-05
 
 - Add method overloading for result

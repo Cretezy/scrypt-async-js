@@ -1,6 +1,6 @@
 {
   "name": "scrypt-async-modern",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "Fast \"async\" scrypt implementation in modern JavaScript.",
   "keywords": [
     "crypto",
