@@ -1,40 +1,37 @@
 {
-	"name": "scrypt-async-modern",
-	"version": "3.0.7",
-	"description": "Fast \"async\" scrypt implementation in modern JavaScript.",
-	"main": "dist/index.js",
-	"scripts": {
-		"watch": "noderize-scripts watch",
-		"build": "noderize-scripts build",
-		"start": "noderize-scripts start",
-		"format": "noderize-scripts format",
-		"test": "noderize-scripts test",
-		"clean": "noderize-scripts clean",
-		"prepack": "noderize-scripts clean && noderize-scripts build --env production"
-	},
-	"devDependencies": {
-		"@noderize/scripts": "^0.7.5"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Cretezy/scrypt-async-modern.git"
-	},
-	"keywords": [
-		"crypto",
-		"cryptography",
-		"scrypt",
-		"password"
-	],
-	"author": "Charles Crete <charles@cretezy.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Cretezy/scrypt-async-modern/issues"
-	},
-	"homepage": "https://github.com/Cretezy/scrypt-async-modern",
-	"prettier": {
-		"useTabs": true
-	},
-	"dependencies": {
-		"@noderize/runtime": "^0.7.5"
-	}
+  "name": "scrypt-async-modern",
+  "version": "3.0.8",
+  "description": "Fast \"async\" scrypt implementation in modern JavaScript.",
+  "keywords": [
+    "crypto",
+    "cryptography",
+    "scrypt",
+    "password"
+  ],
+  "homepage": "https://github.com/Cretezy/scrypt-async-modern",
+  "bugs": {
+    "url": "https://github.com/Cretezy/scrypt-async-modern/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cretezy/scrypt-async-modern.git"
+  },
+  "license": "MIT",
+  "author": "Charles Crete <charles@cretezy.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write src",
+    "prepack": "rimraf dist && npm run build",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  }
 }
