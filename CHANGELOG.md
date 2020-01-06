@@ -1,3 +1,7 @@
+## 3.0.12 - 2019-01-05
+
+- Fix password/salt typings
+
 ## 3.0.11 - 2019-01-05
 
 - Fix overloading

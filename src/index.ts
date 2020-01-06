@@ -22,7 +22,7 @@ export interface IScryptOptions extends IScryptBaseOptions {
  *
  * where
  *
- * password and salt are strings or arrays of bytes (Array of Uint8Array)
+ * password and salt are strings or arrays of bytes (Array or Uint8Array)
  * options is
  *
  * {
@@ -50,32 +50,32 @@ export interface IScryptOptions extends IScryptBaseOptions {
  */
 
 export default function scrypt(
-  password,
-  salt,
-  options?: IScryptBaseOptions & { encoding?: null }
+  password: string | number[] | Uint8Array | ArrayBuffer,
+  salt: string | number[] | Uint8Array | ArrayBuffer,
+  options?: IScryptBaseOptions & { encoding: null | undefined }
 ): Promise<number[]>;
 
 export default function scrypt(
-  password,
-  salt,
+  password: string | number[] | Uint8Array | ArrayBuffer,
+  salt: string | number[] | Uint8Array | ArrayBuffer,
   options?: IScryptBaseOptions & { encoding: "hex" }
 ): Promise<string>;
 
 export default function scrypt(
-  password,
-  salt,
+  password: string | number[] | Uint8Array | ArrayBuffer,
+  salt: string | number[] | Uint8Array | ArrayBuffer,
   options?: IScryptBaseOptions & { encoding: "base64" }
 ): Promise<string>;
 
 export default function scrypt(
-  password,
-  salt,
+  password: string | number[] | Uint8Array | ArrayBuffer,
+  salt: string | number[] | Uint8Array | ArrayBuffer,
   options?: IScryptBaseOptions & { encoding: "binary" }
 ): Promise<Uint8Array>;
 
 export default function scrypt(
-  password,
-  salt,
+  password: string | number[] | Uint8Array | ArrayBuffer,
+  salt: string | number[] | Uint8Array | ArrayBuffer,
   {
     N = 16384,
     logN,
