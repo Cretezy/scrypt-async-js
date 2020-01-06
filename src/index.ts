@@ -4,13 +4,16 @@
  * https://github.com/Cretezy/scrypt-async-modern
  */
 
-export interface IScryptOptions {
+export interface IScryptBaseOptions {
   N?: number;
   logN?: number;
   r?: number;
   p?: number;
   dkLen?: number;
   interruptStep?: number;
+}
+
+export interface IScryptOptions extends IScryptBaseOptions {
   encoding?: "base64" | "hex" | "binary";
 }
 
@@ -45,6 +48,31 @@ export interface IScryptOptions {
  * the callback is called immediately after the calculation, avoiding setImmediate.
  *
  */
+
+export default function scrypt(
+  password,
+  salt,
+  options?: IScryptBaseOptions & { encoding?: null | unknown }
+): Promise<number[]>;
+
+export default function scrypt(
+  password,
+  salt,
+  options?: IScryptBaseOptions & { encoding: "hex" }
+): Promise<string>;
+
+export default function scrypt(
+  password,
+  salt,
+  options?: IScryptBaseOptions & { encoding: "base64" }
+): Promise<string>;
+
+export default function scrypt(
+  password,
+  salt,
+  options?: IScryptBaseOptions & { encoding: "binary" }
+): Promise<Uint8Array>;
+
 export default function scrypt(
   password,
   salt,
@@ -57,7 +85,7 @@ export default function scrypt(
     interruptStep = 0,
     encoding
   }: IScryptOptions = {}
-) {
+): unknown {
   return new Promise((resolve, reject) => {
     if (!logN && !N) {
       return reject(new Error("scrypt: missing N or logN parameter"));
@@ -90,8 +118,8 @@ export default function scrypt(
 }
 
 interface IScryptRunOptions {
-  password: string | Array<number> | Uint8Array | ArrayBuffer;
-  salt: string | Array<number> | Uint8Array | ArrayBuffer;
+  password: string | number[] | Uint8Array | ArrayBuffer;
+  salt: string | number[] | Uint8Array | ArrayBuffer;
 }
 
 // Internal scrypt function
