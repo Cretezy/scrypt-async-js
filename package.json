@@ -1,6 +1,6 @@
 {
   "name": "scrypt-async-modern",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "Fast \"async\" scrypt implementation in modern JavaScript.",
   "keywords": [
     "crypto",
@@ -18,6 +18,9 @@
   },
   "license": "MIT",
   "author": "Charles Crete <charles@cretezy.com>",
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
