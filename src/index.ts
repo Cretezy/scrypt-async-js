@@ -52,7 +52,7 @@ export interface IScryptOptions extends IScryptBaseOptions {
 export default function scrypt(
   password: string | number[] | Uint8Array | ArrayBuffer,
   salt: string | number[] | Uint8Array | ArrayBuffer,
-  options?: IScryptBaseOptions & { encoding: null | undefined }
+  options?: IScryptBaseOptions & { encoding?: null }
 ): Promise<number[]>;
 
 export default function scrypt(
